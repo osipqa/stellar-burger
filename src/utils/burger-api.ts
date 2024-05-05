@@ -1,5 +1,5 @@
 import { setCookie, getCookie, deleteCookie } from './cookie';
-import { TIngredient, TOrder, TUser } from './types';
+import { TIngredient, TOrder, TOrdersData, TUser } from './types';
 
 const URL = process.env.BURGER_API_URL;
 
@@ -15,42 +15,8 @@ type TRefreshResponse = TServerResponse<{
   accessToken: string;
 }>;
 
-type RequestOptions = RequestInit & { authorization?: boolean };
-
-export const makeRequest = async <T>(
-  url: RequestInfo,
-  options: RequestOptions
-): Promise<T> => {
-  try {
-    if (options.authorization) {
-      const accessToken = getCookie('accessToken');
-      if (accessToken) {
-        options.headers = {
-          ...options.headers,
-          authorization: accessToken
-        };
-      }
-    }
-
-    const res = await fetch(url, options);
-    return await checkResponse<T>(res);
-  } catch (err) {
-    if ((err as { message: string }).message === 'jwt expired') {
-      const refreshData = await refreshToken();
-      if (options.headers) {
-        (options.headers as { [key: string]: string }).authorization =
-          refreshData.accessToken;
-      }
-      const res = await fetch(url, options);
-      return await checkResponse<T>(res);
-    } else {
-      return Promise.reject(err);
-    }
-  }
-};
-
 export const refreshToken = (): Promise<TRefreshResponse> =>
-  makeRequest(`${URL}/auth/token`, {
+  fetch(`${URL}/auth/token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -59,7 +25,7 @@ export const refreshToken = (): Promise<TRefreshResponse> =>
       token: localStorage.getItem('refreshToken')
     })
   })
-    .then((res) => checkResponse<TRefreshResponse>(res as Response))
+    .then((res) => checkResponse<TRefreshResponse>(res))
     .then((refreshData) => {
       if (!refreshData.success) {
         return Promise.reject(refreshData);
@@ -99,6 +65,10 @@ type TFeedsResponse = TServerResponse<{
   orders: TOrder[];
   total: number;
   totalToday: number;
+}>;
+
+type TOrdersResponse = TServerResponse<{
+  data: TOrder[];
 }>;
 
 export const getIngredientsApi = () =>
@@ -224,9 +194,7 @@ export const forgotPasswordApi = (data: { email: string }) =>
   })
     .then((res) => checkResponse<TServerResponse<{}>>(res))
     .then((data) => {
-      if (data?.success) {
-        return data;
-      }
+      if (data?.success) return data;
       return Promise.reject(data);
     });
 
@@ -275,7 +243,7 @@ export const logoutApi = () =>
   })
     .then((res) => checkResponse<TServerResponse<{}>>(res))
     .then((data) => {
-      if (data.success) {
+      if (data?.success) {
         deleteCookie('accessToken');
         return data;
       }
