@@ -1,12 +1,11 @@
-import { FC } from 'react';
-
+import React, { FC } from 'react';
 import { Button, Input } from '@zlden/react-developer-burger-ui-components';
 import styles from './profile.module.css';
 import commonStyles from '../common.module.css';
-
 import { ProfileUIProps } from './type';
 import { ProfileMenu } from '@components';
 
+// UI component for the profile page
 export const ProfileUI: FC<ProfileUIProps> = ({
   formValue,
   isFormChanged,
@@ -16,14 +15,17 @@ export const ProfileUI: FC<ProfileUIProps> = ({
   handleInputChange
 }) => (
   <main className={`${commonStyles.container}`}>
+    {/* Profile menu */}
     <div className={`mt-30 mr-15 ${styles.menu}`}>
       <ProfileMenu />
     </div>
+    {/* Profile form */}
     <form
       className={`mt-30 ${styles.form} ${commonStyles.form}`}
       onSubmit={handleSubmit}
     >
       <>
+        {/* Input field for user name */}
         <div className='pb-6'>
           <Input
             type={'text'}
@@ -37,6 +39,7 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             icon={'EditIcon'}
           />
         </div>
+        {/* Input field for email */}
         <div className='pb-6'>
           <Input
             type={'email'}
@@ -50,6 +53,7 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             icon={'EditIcon'}
           />
         </div>
+        {/* Input field for password */}
         <div className='pb-6'>
           <Input
             type={'password'}
@@ -63,6 +67,7 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             icon={'EditIcon'}
           />
         </div>
+        {/* Buttons to cancel or save changes */}
         {isFormChanged && (
           <div className={styles.button}>
             <Button
@@ -78,6 +83,7 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             </Button>
           </div>
         )}
+        {/* Display error message if exists */}
         {updateUserError && (
           <p
             className={`${commonStyles.error} pt-5 text text_type_main-default`}

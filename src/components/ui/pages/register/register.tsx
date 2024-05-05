@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import {
   Input,
   Button,
@@ -8,6 +8,7 @@ import styles from '../common.module.css';
 import { Link } from 'react-router-dom';
 import { RegisterUIProps } from './type';
 
+// UI component for the registration page
 export const RegisterUI: FC<RegisterUIProps> = ({
   errorText,
   email,
@@ -18,9 +19,6 @@ export const RegisterUI: FC<RegisterUIProps> = ({
   userName,
   setUserName
 }) => (
-  /*
-    Отображение ошибок и валидация форм в "можно лучше"
-  */
   <main className={styles.container}>
     <div className={`pt-6 ${styles.wrapCenter}`}>
       <h3 className='pb-6 text text_type_main-medium'>Регистрация</h3>
@@ -30,6 +28,7 @@ export const RegisterUI: FC<RegisterUIProps> = ({
         onSubmit={handleSubmit}
       >
         <>
+          {/* Input field for user name */}
           <div className='pb-6'>
             <Input
               type='text'
@@ -42,6 +41,7 @@ export const RegisterUI: FC<RegisterUIProps> = ({
               size='default'
             />
           </div>
+          {/* Input field for email */}
           <div className='pb-6'>
             <Input
               type='email'
@@ -54,6 +54,7 @@ export const RegisterUI: FC<RegisterUIProps> = ({
               size={'default'}
             />
           </div>
+          {/* Password input field */}
           <div className='pb-6'>
             <PasswordInput
               onChange={(e) => setPassword(e.target.value)}
@@ -61,11 +62,13 @@ export const RegisterUI: FC<RegisterUIProps> = ({
               name='password'
             />
           </div>
+          {/* Submit button */}
           <div className={`pb-6 ${styles.button}`}>
             <Button type='primary' size='medium' htmlType='submit'>
               Зарегистрироваться
             </Button>
           </div>
+          {/* Display error message if exists */}
           {errorText && (
             <p className={`${styles.error} text text_type_main-default pb-6`}>
               {errorText}
@@ -73,6 +76,7 @@ export const RegisterUI: FC<RegisterUIProps> = ({
           )}
         </>
       </form>
+      {/* Link to login page */}
       <div className={`${styles.question} text text_type_main-default pb-6`}>
         Уже зарегистрированы?
         <Link to='/login' className={`pl-2 ${styles.link}`}>

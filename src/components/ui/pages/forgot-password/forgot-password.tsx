@@ -1,10 +1,10 @@
 import { FC } from 'react';
-
 import { Input, Button } from '@zlden/react-developer-burger-ui-components';
 import styles from '../common.module.css';
 import { Link } from 'react-router-dom';
 import { PageUIProps } from '../common-type';
 
+// UI component for the forgot password page
 export const ForgotPasswordUI: FC<PageUIProps> = ({
   errorText,
   email,
@@ -19,6 +19,7 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
         name='login'
         onSubmit={handleSubmit}
       >
+        {/* Input field for email */}
         <div className='pb-6'>
           <Input
             type='email'
@@ -31,17 +32,20 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
             size='default'
           />
         </div>
+        {/* Button to trigger password recovery */}
         <div className={`pb-6 ${styles.button}`}>
           <Button type='primary' size='medium' htmlType='submit'>
             Восстановить
           </Button>
         </div>
+        {/* Display error message if exists */}
         {errorText && (
           <p className={`${styles.error} text text_type_main-default pb-6`}>
             {errorText}
           </p>
         )}
       </form>
+      {/* Link to login page */}
       <div className={`${styles.question} text text_type_main-default pb-6`}>
         Вспомнили пароль?
         <Link to={'/login'} className={`pl-2 ${styles.link}`}>

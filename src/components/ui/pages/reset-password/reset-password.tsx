@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import {
   Input,
   Button,
@@ -8,6 +8,7 @@ import styles from '../common.module.css';
 import { Link } from 'react-router-dom';
 import { ResetPasswordUIProps } from './type';
 
+// UI component for the ResetPassword page
 export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
   errorText,
   password,
@@ -25,6 +26,7 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
         onSubmit={handleSubmit}
       >
         <div className='pb-6'>
+          {/* Password input field */}
           <PasswordInput
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -32,6 +34,7 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
           />
         </div>
         <div className='pb-6'>
+          {/* Input field for token */}
           <Input
             type='text'
             placeholder='Введите код из письма'
@@ -44,10 +47,12 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
           />
         </div>
         <div className={`pb-6 ${styles.button}`}>
+          {/* Submit button */}
           <Button type='primary' size='medium' htmlType='submit'>
             Сохранить
           </Button>
         </div>
+        {/* Display error message if exists */}
         {errorText && (
           <p className={`${styles.error} text text_type_main-default pb-6`}>
             {errorText}
@@ -56,8 +61,9 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
       </form>
       <div className={`${styles.question} text text_type_main-default pb-6`}>
         Вспомнили пароль?
+        {/* Link to the login page */}
         <Link to='/login' className={`pl-2 ${styles.link}`}>
-          Войти
+          Вход
         </Link>
       </div>
     </div>

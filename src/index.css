@@ -1,3 +1,9 @@
 body {
   margin: 0;
 }
+
+.item-center {
+  display: flex;
+  justify-content: center;
+  padding-block-start: 20%;
+}
