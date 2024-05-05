@@ -53,12 +53,22 @@ export const constructorSlice = createSlice({
         return { payload: { ...ingredient, id } };
       }
     },
-    // Remove an ingredient from the constructor
+    /* Remove an ingredient from the constructor (only group)
     removeIngredient: (state, action: PayloadAction<string>) => {
       state.constructorItems.ingredients =
         state.constructorItems.ingredients.filter(
           (i) => i.id !== action.payload
         );
+    },
+    */
+    // Remove an ingredient from the constructor (only 1)
+    removeIngredient: (state, action: PayloadAction<string>) => {
+      const indexToRemove = state.constructorItems.ingredients.findIndex(
+        (i) => i._id === action.payload
+      );
+      if (indexToRemove !== 1) {
+        state.constructorItems.ingredients.splice(indexToRemove, 1);
+      }
     },
     // Move an ingredient up in the constructor
     moveIngredientUp: (state, action: PayloadAction<number>) => {
