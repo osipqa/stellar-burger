@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getIngredientsApi } from '@api';
 import { TIngredient } from '@utils-types';
 
@@ -9,6 +9,7 @@ type TIngredientsState = {
   mains: TIngredient[];
   sauces: TIngredient[];
   isLoading: boolean;
+  error: string | null;
 };
 
 // Initial state of the ingredients slice
@@ -17,7 +18,8 @@ const initialState: TIngredientsState = {
   buns: [],
   mains: [],
   sauces: [],
-  isLoading: false
+  isLoading: false,
+  error: null
 };
 
 // Async thunk to fetch ingredients
@@ -42,16 +44,18 @@ export const ingredientSlice = createSlice({
     builder
       .addCase(fetchIngredients.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
-      .addCase(fetchIngredients.fulfilled, (state, action) => {
+      .addCase(fetchIngredients.fulfilled, (state, action: PayloadAction<TIngredient[]>) => {
         state.isLoading = false;
         state.ingredients = action.payload;
         state.buns = action.payload.filter((item) => item.type === 'bun');
         state.mains = action.payload.filter((item) => item.type === 'main');
         state.sauces = action.payload.filter((item) => item.type === 'sauce');
       })
-      .addCase(fetchIngredients.rejected, (state) => {
+      .addCase(fetchIngredients.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.error.message || 'Failed to fetch ingredients';
       });
   }
 });

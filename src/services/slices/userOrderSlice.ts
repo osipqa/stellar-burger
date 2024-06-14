@@ -14,7 +14,7 @@ type TUserState = {
 };
 
 // Define initial state
-const initialState: TUserState = {
+export const initialState: TUserState = {
   orders: [] // Renamed field to "orders"
 };
 

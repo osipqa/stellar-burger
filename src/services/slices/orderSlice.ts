@@ -1,61 +1,48 @@
-import { orderBurgerApi } from '@api';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { RootState } from '../store';
+import { orderBurgerApi } from '@api';
 
 // Define the shape of the order state
 type TOrderState = {
-  orders: TOrder | null;
+  orders: TOrder | null; // Changed to TOrder | null
   request: boolean;
-  name: string;
-  error?: string | null; // Error message, if any
+  error: string | undefined; // Error message, if any
 };
 
 // Initial state of the order slice
 export const initialState: TOrderState = {
-  orders: null,
-  name: '',
-  request: false
+  orders: null, // Changed to null
+  request: false,
+  error: undefined
 };
 
 // Async thunk to post an order
-export const postOrder = createAsyncThunk(
-  'order/postOrder',
-  async (orders: string[]) => {
-    const response = await orderBurgerApi(orders);
-    return response;
-  }
-);
+export const postOrder = createAsyncThunk('order/createOrder', orderBurgerApi);
 
 // Define the order slice
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    // Clear the order state
-    clearOrder: (state) => {
-      state = initialState;
-    }
+    clearOrder: () => initialState
+  },
+  selectors: {
+    getOrderRequest: (state) => state.request,
+    getOrderModalData: (state) => state.orders
   },
   extraReducers: (builder) => {
     builder
       .addCase(postOrder.pending, (state) => {
-        state.error = null;
         state.request = true;
       })
       .addCase(postOrder.rejected, (state, action) => {
-        state.error = action.error.message as string;
-        state.request = false;
+        state.error = action.error.message;
       })
-      .addCase(
-        postOrder.fulfilled,
-        (state, action: PayloadAction<{ name: string; order: TOrder }>) => {
-          state.error = null;
-          state.request = false;
-          state.name = action.payload.name;
-          state.orders = action.payload.order;
-        }
-      );
+      .addCase(postOrder.fulfilled, (state, action) => {
+        state.request = false;
+        state.orders = action.payload.order;
+      });
   }
 });
 
