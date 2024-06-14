@@ -42,9 +42,16 @@ describe('feed slice', () => {
   });
 
   test('должен обрабатывать getFeeds.rejected', () => {
-    const action = { type: getFeeds.rejected.type, error: { message: 'Не удалось получить заказы' } };
+    const action = {
+      type: getFeeds.rejected.type,
+      error: { message: 'Не удалось получить заказы' }
+    };
     const state = feedsReducer(initialState, action);
-    expect(state).toEqual({ ...initialState, loading: false, error: 'Не удалось получить заказы' });
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      error: 'Не удалось получить заказы'
+    });
   });
 
   test('должен обрабатывать getFeeds.fulfilled', () => {

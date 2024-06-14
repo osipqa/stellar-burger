@@ -9,7 +9,7 @@ describe('ingredients slice', () => {
     mains: [],
     sauces: [],
     isLoading: false,
-    error: null,
+    error: null
   };
 
   const mockIngredients: TIngredient[] = [
@@ -24,7 +24,7 @@ describe('ingredients slice', () => {
       price: 90,
       image: 'https://code.s3.yandex.net/react/code/sauce-02.png',
       image_mobile: 'https://code.s3.yandex.net/react/code/sauce-02.png',
-      image_large: 'https://code.s3.yandex.net/react/code/sauce-02.png',
+      image_large: 'https://code.s3.yandex.net/react/code/sauce-02.png'
     },
     {
       _id: '2',
@@ -37,14 +37,16 @@ describe('ingredients slice', () => {
       price: 300,
       image: 'https://code.s3.yandex.net/react/code/sauce-02.png',
       image_mobile: 'https://code.s3.yandex.net/react/code/sauce-02.png',
-      image_large: 'https://code.s3.yandex.net/react/code/sauce-02.png',
-    },
+      image_large: 'https://code.s3.yandex.net/react/code/sauce-02.png'
+    }
   ];
 
   test('должен обрабатывать начальное состояние', () => {
-    expect(ingredientsReducer(undefined, {
-      type: ''
-    })).toEqual(initialState);
+    expect(
+      ingredientsReducer(undefined, {
+        type: ''
+      })
+    ).toEqual(initialState);
   });
 
   test('должен обрабатывать fetchIngredients.pending', () => {
@@ -54,7 +56,10 @@ describe('ingredients slice', () => {
   });
 
   test('должен обрабатывать fetchIngredients.fulfilled', () => {
-    const action = { type: fetchIngredients.fulfilled.type, payload: mockIngredients };
+    const action = {
+      type: fetchIngredients.fulfilled.type,
+      payload: mockIngredients
+    };
     const state = ingredientsReducer(initialState, action);
     expect(state).toEqual({
       ...initialState,
@@ -62,17 +67,20 @@ describe('ingredients slice', () => {
       buns: [],
       mains: [mockIngredients[1]],
       sauces: [mockIngredients[0]],
-      isLoading: false,
+      isLoading: false
     });
   });
 
   test('должен обрабатывать fetchIngredients.rejected', () => {
-    const action = { type: fetchIngredients.rejected.type, error: { message: 'Не удалось получить ингредиенты' } };
+    const action = {
+      type: fetchIngredients.rejected.type,
+      error: { message: 'Не удалось получить ингредиенты' }
+    };
     const state = ingredientsReducer(initialState, action);
     expect(state).toEqual({
       ...initialState,
       isLoading: false,
-      error: 'Не удалось получить ингредиенты',
+      error: 'Не удалось получить ингредиенты'
     });
   });
 });

@@ -15,8 +15,10 @@ test('с богом', () => {
     feed: feedsReducer,
     user: userReducer,
     userOrder: userOrderReducer,
-    order: orderReducer,
+    order: orderReducer
   });
 
-  expect(rootReducer(undefined, { type: '@@INIT' })).toEqual(expectedReducer(undefined, { type: '@@INIT' }));
+  expect(rootReducer(undefined, { type: '@@INIT' })).toEqual(
+    expectedReducer(undefined, { type: '@@INIT' })
+  );
 });

@@ -1,5 +1,10 @@
 import { describe, expect, test } from '@jest/globals';
-import { postOrder, orderReducer, initialState, clearOrder } from './orderSlice';
+import {
+  postOrder,
+  orderReducer,
+  initialState,
+  clearOrder
+} from './orderSlice';
 import { TOrder } from '@utils-types';
 import { AnyAction } from '@reduxjs/toolkit';
 
@@ -25,15 +30,29 @@ describe('order slice', () => {
   });
 
   test('должен обрабатывать postOrder.rejected', () => {
-    const action = { type: postOrder.rejected.type, error: { message: 'Не удалось создать заказ' } };
+    const action = {
+      type: postOrder.rejected.type,
+      error: { message: 'Не удалось создать заказ' }
+    };
     const state = orderReducer(initialState, action);
-    expect(state).toEqual({ ...initialState, error: 'Не удалось создать заказ', request: false });
+    expect(state).toEqual({
+      ...initialState,
+      error: 'Не удалось создать заказ',
+      request: false
+    });
   });
 
   test('должен обрабатывать postOrder.fulfilled', () => {
-    const action = { type: postOrder.fulfilled.type, payload: { order: mockOrder } };
+    const action = {
+      type: postOrder.fulfilled.type,
+      payload: { order: mockOrder }
+    };
     const state = orderReducer(initialState, action);
-    expect(state).toEqual({ ...initialState, orders: mockOrder, request: false });
+    expect(state).toEqual({
+      ...initialState,
+      orders: mockOrder,
+      request: false
+    });
   });
 
   test('должен обрабатывать clearOrder', () => {
