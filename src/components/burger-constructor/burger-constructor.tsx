@@ -18,25 +18,27 @@ import {
 export const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { constructorItems } = useSelector(getConstructorSelector);
+  const constructorItems = useSelector(getConstructorSelector);
   const user = useSelector(getIsAuthCheckedSelector);
   const { orders, request } = useSelector(getOrderState);
 
   const onOrderClick = () => {
-    if (!constructorItems.bun || request) return;
     if (!user) navigate('/login');
-    dispatch(
-      postOrder([
-        constructorItems.bun._id,
-        ...constructorItems.ingredients.map((i) => i._id),
-        constructorItems.bun._id
-      ])
-    );
+    if (!constructorItems.bun || request) return;
+
+    const orderData = [
+      constructorItems.bun._id,
+      ...constructorItems.ingredients.map((i) => i._id),
+      constructorItems.bun._id
+    ];
+
+    dispatch(postOrder(orderData));
   };
+
   const closeOrderModal = () => {
     dispatch(clearOrder());
     dispatch(clearAll());
-    navigate('/login');
+    navigate('/');
   };
 
   const price = useMemo(

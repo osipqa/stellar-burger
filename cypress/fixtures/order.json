@@ -1,0 +1,97 @@
+{
+  "success": true,
+  "order": {  
+    "ingredientsInfo": [
+      {
+        "_id": "1",
+        "name": "Краторная булка N-200i",
+        "type": "bun",
+        "proteins": 53,
+        "fat": 24,
+        "carbohydrates": 80,
+        "calories": 420,
+        "price": 1255,
+        "image": "https://code.s3.yandex.net/react/code/bun-02.png",
+        "image_large": "https://code.s3.yandex.net/react/code/bun-02.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/bun-02.png"
+      },
+      {
+        "_id": "2",
+        "name": "Биокотлета из марсианской Магнолии",
+        "type": "main",
+        "proteins": 420,
+        "fat": 142,
+        "carbohydrates": 242,
+        "calories": 4242,
+        "price": 424,
+        "image": "https://code.s3.yandex.net/react/code/meat-01.png",
+        "image_large": "https://code.s3.yandex.net/react/code/meat-01.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/meat-01.png"
+      },
+      {
+        "_id": "3",
+        "name": "Соус Spicy-X",
+        "type": "sauce",
+        "proteins": 30,
+        "fat": 20,
+        "carbohydrates": 40,
+        "calories": 30,
+        "price": 90,
+        "image": "https://code.s3.yandex.net/react/code/sauce-02.png",
+        "image_large": "https://code.s3.yandex.net/react/code/sauce-02.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/sauce-02.png"
+      }
+    ],
+    "ingredientsToShow": [
+      {
+        "_id": "1",
+        "name": "Краторная булка N-200i",
+        "type": "bun",
+        "proteins": 53,
+        "fat": 24,
+        "carbohydrates": 80,
+        "calories": 420,
+        "price": 1255,
+        "image": "https://code.s3.yandex.net/react/code/bun-02.png",
+        "image_large": "https://code.s3.yandex.net/react/code/bun-02.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/bun-02.png"
+      },
+      {
+        "_id": "2",
+        "name": "Биокотлета из марсианской Магнолии",
+        "type": "main",
+        "proteins": 420,
+        "fat": 142,
+        "carbohydrates": 242,
+        "calories": 4242,
+        "price": 424,
+        "image": "https://code.s3.yandex.net/react/code/meat-01.png",
+        "image_large": "https://code.s3.yandex.net/react/code/meat-01.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/meat-01.png"
+      },
+      {
+        "_id": "3",
+        "name": "Соус Spicy-X",
+        "type": "sauce",
+        "proteins": 30,
+        "fat": 20,
+        "carbohydrates": 40,
+        "calories": 30,
+        "price": 90,
+        "image": "https://code.s3.yandex.net/react/code/sauce-02.png",
+        "image_large": "https://code.s3.yandex.net/react/code/sauce-02.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/sauce-02.png"
+      }
+    ],
+    "remains": 0,
+    "total": 1779,
+    "date": "2024-06-14T12:00:00Z",
+    "_id": "order12345",
+    "status": "completed",
+    "name": "Test Order",
+    "createdAt": "2024-06-14T12:00:00Z",
+    "updatedAt": "2024-06-14T12:05:00Z",
+    "number": 12345,
+    "ingredients": ["1", "2", "3"]
+  }
+}
