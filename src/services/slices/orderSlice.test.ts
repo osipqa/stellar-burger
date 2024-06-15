@@ -1,7 +1,18 @@
 import { describe, expect, test } from '@jest/globals';
+<<<<<<< HEAD
+import {
+  postOrder,
+  orderReducer,
+  initialState,
+  clearOrder
+} from './orderSlice';
+import { TOrder } from '@utils-types';
+import { Action } from '@reduxjs/toolkit';
+=======
 import { postOrder, orderReducer, initialState, clearOrder } from './orderSlice';
 import { TOrder } from '@utils-types';
 import { AnyAction } from '@reduxjs/toolkit';
+>>>>>>> main
 
 describe('order slice', () => {
   const mockOrder: TOrder = {
@@ -15,7 +26,11 @@ describe('order slice', () => {
   };
 
   test('должен обрабатывать начальное состояние', () => {
+<<<<<<< HEAD
+    expect(orderReducer(undefined, {} as Action )).toEqual(initialState);
+=======
     expect(orderReducer(undefined, {} as AnyAction)).toEqual(initialState);
+>>>>>>> main
   });
 
   test('должен обрабатывать postOrder.pending', () => {
@@ -25,6 +40,31 @@ describe('order slice', () => {
   });
 
   test('должен обрабатывать postOrder.rejected', () => {
+<<<<<<< HEAD
+    const action = {
+      type: postOrder.rejected.type,
+      error: { message: 'Не удалось создать заказ' }
+    };
+    const state = orderReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      error: 'Не удалось создать заказ',
+      request: false
+    });
+  });
+
+  test('должен обрабатывать postOrder.fulfilled', () => {
+    const action = {
+      type: postOrder.fulfilled.type,
+      payload: { order: mockOrder }
+    };
+    const state = orderReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      orders: mockOrder,
+      request: false
+    });
+=======
     const action = { type: postOrder.rejected.type, error: { message: 'Не удалось создать заказ' } };
     const state = orderReducer(initialState, action);
     expect(state).toEqual({ ...initialState, error: 'Не удалось создать заказ', request: false });
@@ -34,6 +74,7 @@ describe('order slice', () => {
     const action = { type: postOrder.fulfilled.type, payload: { order: mockOrder } };
     const state = orderReducer(initialState, action);
     expect(state).toEqual({ ...initialState, orders: mockOrder, request: false });
+>>>>>>> main
   });
 
   test('должен обрабатывать clearOrder', () => {

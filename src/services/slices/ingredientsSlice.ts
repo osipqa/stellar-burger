@@ -46,6 +46,18 @@ export const ingredientSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
+<<<<<<< HEAD
+      .addCase(
+        fetchIngredients.fulfilled,
+        (state, action: PayloadAction<TIngredient[]>) => {
+          state.isLoading = false;
+          state.ingredients = action.payload;
+          state.buns = action.payload.filter((item) => item.type === 'bun');
+          state.mains = action.payload.filter((item) => item.type === 'main');
+          state.sauces = action.payload.filter((item) => item.type === 'sauce');
+        }
+      )
+=======
       .addCase(fetchIngredients.fulfilled, (state, action: PayloadAction<TIngredient[]>) => {
         state.isLoading = false;
         state.ingredients = action.payload;
@@ -53,6 +65,7 @@ export const ingredientSlice = createSlice({
         state.mains = action.payload.filter((item) => item.type === 'main');
         state.sauces = action.payload.filter((item) => item.type === 'sauce');
       })
+>>>>>>> main
       .addCase(fetchIngredients.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Failed to fetch ingredients';

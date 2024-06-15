@@ -1,7 +1,11 @@
 import { describe, expect, test } from '@jest/globals';
 import { getFeeds, feedsReducer, initialState } from './feedSlice';
 import { TOrder } from '@utils-types';
+<<<<<<< HEAD
+import { Action } from '@reduxjs/toolkit';
+=======
 import { AnyAction } from '@reduxjs/toolkit';
+>>>>>>> main
 
 describe('feed slice', () => {
   const mockOrders: TOrder[] = [
@@ -32,7 +36,11 @@ describe('feed slice', () => {
   };
 
   test('должен обрабатывать начальное состояние', () => {
+<<<<<<< HEAD
+    expect(feedsReducer(undefined, {} as Action)).toEqual(initialState);
+=======
     expect(feedsReducer(undefined, {} as AnyAction)).toEqual(initialState);
+>>>>>>> main
   });
 
   test('должен обрабатывать getFeeds.pending', () => {
@@ -42,9 +50,22 @@ describe('feed slice', () => {
   });
 
   test('должен обрабатывать getFeeds.rejected', () => {
+<<<<<<< HEAD
+    const action = {
+      type: getFeeds.rejected.type,
+      error: { message: 'Не удалось получить заказы' }
+    };
+    const state = feedsReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      error: 'Не удалось получить заказы'
+    });
+=======
     const action = { type: getFeeds.rejected.type, error: { message: 'Не удалось получить заказы' } };
     const state = feedsReducer(initialState, action);
     expect(state).toEqual({ ...initialState, loading: false, error: 'Не удалось получить заказы' });
+>>>>>>> main
   });
 
   test('должен обрабатывать getFeeds.fulfilled', () => {
