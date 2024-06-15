@@ -1,4 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
+<<<<<<< HEAD
 import {
   initialState,
   addIngredient,
@@ -9,6 +10,9 @@ import {
   clearAll,
   constructorReducer
 } from './constructorSlice';
+=======
+import { initialState, addIngredient, removeIngredient, moveIngredientUp, moveIngredientDown, resetModal, clearAll, constructorReducer } from './constructorSlice';
+>>>>>>> main
 
 describe('Burger Reducer', () => {
   const testIngredients = [
@@ -150,4 +154,8 @@ describe('Burger Reducer', () => {
     // проверка, что все данные конструктора очищены правильно
     expect(newState).toEqual(initialState);
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 });

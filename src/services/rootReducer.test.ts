@@ -8,6 +8,7 @@ import { userOrderReducer } from './slices/userOrderSlice';
 import { rootReducer } from './rootReducer';
 import { expect, test } from '@jest/globals';
 
+<<<<<<< HEAD
 const expectedReducer = combineReducers({
   ingredients: ingredientsReducer,
   constructorBurger: constructorReducer,
@@ -22,4 +23,17 @@ test('с богом', () => { // c:
   const APP_INIT = { type: 'APP_INIT' };
   const initialState = expectedReducer(undefined, UNKNOWN_ACTION)
   expect(rootReducer(undefined, APP_INIT)).toEqual(initialState);
+=======
+test('с богом', () => {
+  const expectedReducer = combineReducers({
+    ingredients: ingredientsReducer,
+    constructorBurger: constructorReducer,
+    feed: feedsReducer,
+    user: userReducer,
+    userOrder: userOrderReducer,
+    order: orderReducer,
+  });
+
+  expect(rootReducer(undefined, { type: '@@INIT' })).toEqual(expectedReducer(undefined, { type: '@@INIT' }));
+>>>>>>> main
 });
