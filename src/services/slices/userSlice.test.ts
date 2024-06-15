@@ -9,7 +9,7 @@ import {
   userReducer
 } from './userSlice';
 import { TUser } from '@utils-types';
-import { AnyAction } from '@reduxjs/toolkit';
+import { Action } from '@reduxjs/toolkit';
 
 describe('слайс пользователя', () => {
   const mockUser: TUser = {
@@ -18,7 +18,7 @@ describe('слайс пользователя', () => {
   };
 
   test('должен обрабатывать начальное состояние', () => {
-    expect(userReducer(undefined, {} as AnyAction)).toEqual(initialState);
+    expect(userReducer(undefined, {} as Action )).toEqual(initialState);
   });
 
   test('должен обрабатывать register.pending', () => {

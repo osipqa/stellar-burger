@@ -6,7 +6,7 @@ import {
   clearOrder
 } from './orderSlice';
 import { TOrder } from '@utils-types';
-import { AnyAction } from '@reduxjs/toolkit';
+import { Action } from '@reduxjs/toolkit';
 
 describe('order slice', () => {
   const mockOrder: TOrder = {
@@ -20,7 +20,7 @@ describe('order slice', () => {
   };
 
   test('должен обрабатывать начальное состояние', () => {
-    expect(orderReducer(undefined, {} as AnyAction)).toEqual(initialState);
+    expect(orderReducer(undefined, {} as Action )).toEqual(initialState);
   });
 
   test('должен обрабатывать postOrder.pending', () => {

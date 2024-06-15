@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { getFeeds, feedsReducer, initialState } from './feedSlice';
 import { TOrder } from '@utils-types';
-import { AnyAction } from '@reduxjs/toolkit';
+import { Action } from '@reduxjs/toolkit';
 
 describe('feed slice', () => {
   const mockOrders: TOrder[] = [
@@ -32,7 +32,7 @@ describe('feed slice', () => {
   };
 
   test('должен обрабатывать начальное состояние', () => {
-    expect(feedsReducer(undefined, {} as AnyAction)).toEqual(initialState);
+    expect(feedsReducer(undefined, {} as Action)).toEqual(initialState);
   });
 
   test('должен обрабатывать getFeeds.pending', () => {

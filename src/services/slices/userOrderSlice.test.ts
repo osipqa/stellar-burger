@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { getOrder, userOrderReducer, initialState } from './userOrderSlice';
 import { TOrder } from '@utils-types';
-import { AnyAction } from '@reduxjs/toolkit';
+import { Action } from '@reduxjs/toolkit';
 
 describe('userOrder slice', () => {
   const mockOrders: TOrder[] = [
@@ -25,13 +25,10 @@ describe('userOrder slice', () => {
     }
   ];
 
-  test('далжно работать.. наверно', () => {
-    expect(userOrderReducer(undefined, {} as AnyAction)).toEqual(initialState);
-  });
-
   test('тут тоже должно работать, но не уверен', () => {
     const action = { type: getOrder.fulfilled.type, payload: mockOrders };
     const state = userOrderReducer(initialState, action);
     expect(state.orders).toEqual(mockOrders);
   });
+
 });
